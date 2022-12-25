@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: black;
+        }
+
+        .clock {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: aqua;
+            font-size: 60px;
+            font-family: Orbitron;
+            letter-spacing: 7px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <head>
+        <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+    </head>
+    <script>
+        function showTime(){
+            var date = new Date();
+            var h = date.getHours();
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+            var session = "AM";
+           
+            if(h == 0){
+                h = 12;
+            }
+
+            if(h>12){
+                h = h - 12;
+                session = "PM";
+            }
+
+            h = (h<10)?"0" + h:h;
+            m = (m<10)?"0" + m:m;
+            s = (s<10)?"0" + s:s;
+
+            var time = h + ":" + m + ":" + s + " " + session; 
+
+            document.getElementById("MyClockDisplay").innerText = time;
+            document.getElementById("MyClockDisplay").textContent = time;
+
+            setTimeout(showTime, 1000);
+
+        }
+        showTime();
+    </script>
+</body>
+
+</html>
